@@ -1,11 +1,21 @@
- steps:
+name: Snake Animation 🐍
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # cada hora
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Generate snake animation
         uses: Platane/snk@v3
         with:
-github_user_name: AndresContreras1034
+          github_user_name: AndresContreras1034
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
@@ -16,15 +26,8 @@ github_user_name: AndresContreras1034
           target_branch: output
           build_dir: dist
         env:
+          # Este token es generado automáticamente por GitHub con permisos para el repo
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
-
-
-
-
-
 
 
 
