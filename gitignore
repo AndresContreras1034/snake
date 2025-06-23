@@ -1,0 +1,13 @@
+.Ds_Store
+thumbs.db
+
+none_modules/
+*.log
+*.tmp
+*.bak
+
+.vscode/
+.idea/
+
+ehthumbs.db
+Desktop.ini
