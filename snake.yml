@@ -2,7 +2,7 @@ name: Snake Animation 🐍
 
 on:
   schedule:
-    - cron: "0 * * * *"  # cada hora
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -11,6 +11,12 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+
+      - name: Debug git status
+        run: |
+          git fetch --all
+          git branch -a
+          git status
 
       - name: Generate snake animation
         uses: Platane/snk@v3
@@ -25,17 +31,6 @@ jobs:
         with:
           target_branch: output
           build_dir: dist
+          force_orphan: true
         env:
-          # Este token es generado automáticamente por GitHub con permisos para el repo
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
-
-
-
-
-
-
-
-
