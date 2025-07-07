@@ -2,7 +2,7 @@ name: Snake Animation 🐍
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 */12 * * *"  # Cada 12 horas
   workflow_dispatch:
 
 jobs:
@@ -33,4 +33,4 @@ jobs:
           build_dir: dist
           force_orphan: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
