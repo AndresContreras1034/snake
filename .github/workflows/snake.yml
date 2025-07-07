@@ -2,7 +2,7 @@ name: Snake Animation 🐍
 
 on:
   schedule:
-    - cron: "0 * * * *"  # cada hora
+    - cron: "0 */12 * * *"  # Cada 12 horas
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Debug git status
+        run: |
+          git fetch --all
+          git branch -a
+          git status
+
       - name: Generate snake animation
         uses: Platane/snk@v3
         with:
@@ -20,16 +26,11 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      - name: Debug git status
-        run: |
-          git branch -a
-          git status
-          git remote -v
-
       - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
           build_dir: dist
+          force_orphan: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
