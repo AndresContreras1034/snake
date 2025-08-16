@@ -33,4 +33,4 @@ jobs:
           build_dir: dist
           force_orphan: true
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.PIT }}
